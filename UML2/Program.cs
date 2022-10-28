@@ -1,14 +1,6 @@
 ﻿using UML2;
-
 CustomerAdmin customerAdmin = new CustomerAdmin();
 PizzaMenuAdmin pizzaMenuAdmin = new PizzaMenuAdmin();
-
-Pizza p1 = new Pizza("Vezuvi", 1);
-Pizza p2 = new Pizza("Matador", 2);
-//Customer c1 = new Customer("Frederik", 87654321);
-//Customer c2 = new Customer("John", 12345678);
-
-
 //ASCII art banner
 Console.WriteLine($" ███████████   ███              ██████   ██████                                                        ███████████   ███                                             ███           \r\n" +
                   $"░░███░░░░░███ ░░░              ░░██████ ██████                                                        ░░███░░░░░███ ░░░                                             ░░░            \r\n" +
@@ -22,16 +14,8 @@ Console.WriteLine($" ███████████   ███              
                   $"                   ░░██████                                                                                                                                                        \r\n" +
                   $"                    ░░░░░░                                                                                                                                                         ");
 
-
 Console.WriteLine($"\n Welcome To Big Mamma's Pizza Sytem\n\n\n " +
                   $"==================================\n");
-
-
-
-
 DialogMenu dialogMenu = new DialogMenu(customerAdmin, pizzaMenuAdmin);
 dialogMenu.Run();
 Console.ReadKey();
-
-
-

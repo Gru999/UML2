@@ -4,42 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML2
-{
-    internal class DialogMenu
-    {
+namespace UML2 {
+    internal class DialogMenu {
         private CustomerAdmin _customerAdminList;
         private PizzaMenuAdmin _pizzaMenuAdmin;
-        public DialogMenu(CustomerAdmin customerAdminList, PizzaMenuAdmin pizzaMenuAdmin)
-        {
+        public DialogMenu(CustomerAdmin customerAdminList, PizzaMenuAdmin pizzaMenuAdmin) {
             _customerAdminList = customerAdminList;
             _pizzaMenuAdmin = pizzaMenuAdmin;
         }
 
-        public int UserChoice()
-        {
+        public int UserChoice() {
             string choice = Console.ReadLine();
             int input = -1;
-            if (int.TryParse(choice, out input))
-            {
+            if (int.TryParse(choice, out input)) {
                 return input;
-            }
-            else
-            {
+            } else {
                 return -1;
             }
         }
 
-        public int ShowMenu()
-        {
+        public int ShowMenu() {
             Console.Clear();
-            Console.WriteLine("\t---------------CRUD Customer Administration--------------------");
+            Console.WriteLine("\t===============Customer Administration===============");
             Console.WriteLine("\t1.\tAdd Customer to the list");
             Console.WriteLine("\t2.\tShow all Customers on the list");
             Console.WriteLine("\t3.\tSearch for a Customer by Name");
             Console.WriteLine("\t4.\tDelete a Customer from the list (by Name)");
             Console.WriteLine("\t5.\tUpdate a Customer from the list (by Name)");
-            Console.WriteLine("\t---------------CRUD Pizza Menu Administration--------------------");
+            Console.WriteLine("\t===============Pizza Menu Administration===============");
             Console.WriteLine("\t6.\tAdd a Pizza to the list");
             Console.WriteLine("\t7.\tShow all Pizzas on the list");
             Console.WriteLine("\t8.\tSearch for a Pizza by Name");
@@ -53,8 +45,7 @@ namespace UML2
             return UserChoice();
         }
 
-        public void Run()
-        {
+        public void Run() {
             Console.WriteLine("Add your Name");
             Console.WriteLine("Enter Name:");
             string custName = Console.ReadLine();
@@ -65,10 +56,8 @@ namespace UML2
 
 
             int choice1 = ShowMenu();
-            while (choice1 != 0)
-            {
-                switch (choice1)
-                {
+            while (choice1 != 0) {
+                switch (choice1) {
                     //CustomerAdmin(list)
                     case 1:
                         Console.Clear();
@@ -97,7 +86,6 @@ namespace UML2
                         Console.Clear();
                         AddPizzaToList();
                         break;
-                    //problem with PizzaPrint()
                     case 7:
                         Console.Clear();
                         Console.WriteLine("Print Pizza Menu");
@@ -129,8 +117,7 @@ namespace UML2
 
 
 
-        private void AddCustomerToList()
-        {
+        private void AddCustomerToList() {
             Console.WriteLine("Add Customer");
             Console.WriteLine("Enter Name:");
             string custName = Console.ReadLine();
@@ -140,43 +127,34 @@ namespace UML2
             Customer a = new Customer(custName, custPhone);
             _customerAdminList.AddCustomer(a);
         }
-        private void DeleteCustomerFromList()
-        {
+        private void DeleteCustomerFromList() {
             Console.WriteLine("Delete Customer");
             Console.WriteLine("Enter Name:");
             string custName = Console.ReadLine();
             _customerAdminList.DeleteCustomer(custName);
         }
 
-        private void SearchCustomerList()
-        {
+        private void SearchCustomerList() {
             Console.WriteLine("Search Customer");
             Console.WriteLine("Enter Name:");
             string custName = Console.ReadLine();
             Customer cust = _customerAdminList.LookupCustomer(custName);
-            if (cust == null)
-            {
+            if (cust == null) {
                 Console.WriteLine("No such Customer exist on the list");
-            }
-            else
-            {
+            } else {
                 Console.WriteLine(cust);
             }
             Console.ReadLine();
         }
 
-        private void UpdateCustomerList()
-        {
+        private void UpdateCustomerList() {
             Console.WriteLine("Update Customer");
             Console.WriteLine("Enter the name of the Customer you would like to edit");
             string custOldName = Console.ReadLine();
             Customer cust = _customerAdminList.LookupCustomer(custOldName);
-            if (cust == null)
-            {
+            if (cust == null) {
                 Console.WriteLine("No such Customer exist on the list");
-            }
-            else
-            {
+            } else {
                 Console.WriteLine("Update Customer");
                 Console.WriteLine("Enter Name");
                 string custName = Console.ReadLine();
@@ -191,59 +169,57 @@ namespace UML2
         }
 
         //Dictionary part
-        private void AddPizzaToList()
-        {
+        private void AddPizzaToList() {
             Console.WriteLine("Add Pizza");
-            Console.WriteLine("Enter Name:");
+            Console.WriteLine("Enter a Name for the Pizza:");
             string pizzaName = Console.ReadLine();
             Console.WriteLine("Enter Pizza nr:");
             int pizzaNumber = int.Parse(Console.ReadLine());
-            Pizza a = new Pizza(pizzaName, pizzaNumber);
+            Console.WriteLine("Enter toppings for the Pizza:");
+            string ingridients = Console.ReadLine();
+            Console.WriteLine("Enter a Price:");
+            double price = double.Parse(Console.ReadLine());
+            Pizza a = new Pizza(pizzaName, pizzaNumber, ingridients, price);
             _pizzaMenuAdmin.AddPizza(a);
         }
-        private void DeletePizzaFromList()
-        {
+        private void DeletePizzaFromList() {
             Console.WriteLine("Delete Pizza");
-            Console.WriteLine("Enter Name:");
+            Console.WriteLine("Enter Number:");
             int pizzaNumber = int.Parse(Console.ReadLine());
             _pizzaMenuAdmin.DeletePizza(pizzaNumber);
         }
 
-        private void SearchPizzaList()
-        {
+        private void SearchPizzaList() {
             Console.WriteLine("Search Pizza");
             Console.WriteLine("Enter Pizza number:");
             int pizzaNumber = int.Parse(Console.ReadLine());
             Pizza pizza = _pizzaMenuAdmin.LookupPizza(pizzaNumber);
-            if (pizza == null)
-            {
+            if (pizza == null) {
                 Console.WriteLine("No such Pizza exist on the list");
-            }
-            else
-            {
+            } else {
                 Console.WriteLine(pizza);
             }
             Console.ReadLine();
         }
 
-        private void UpdatePizzaList()
-        {
+        private void UpdatePizzaList() {
             Console.WriteLine("Update Pizza");
-            Console.WriteLine("Enter the name of the Pizza you would like to edit");
+            Console.WriteLine("Enter the Number of the Pizza you would like to edit");
             int pizzaOldNumber = int.Parse(Console.ReadLine());
             Pizza pizza = _pizzaMenuAdmin.LookupPizza(pizzaOldNumber);
-            if (pizza == null)
-            {
+            if (pizza == null) {
                 Console.WriteLine("No such Pizza exist on the list");
-            }
-            else
-            {
+            } else {
                 Console.WriteLine("Update Pizza");
                 Console.WriteLine("Enter Pizza name");
                 string pizzaName = Console.ReadLine();
                 Console.WriteLine("Enter Pizza nr:");
                 int pizzaNumber = int.Parse(Console.ReadLine());
-                Pizza updatedPizza = new Pizza(pizzaName, pizzaNumber);
+                Console.WriteLine("Enter toppings for the Pizza:");
+                string ingridients = Console.ReadLine();
+                Console.WriteLine("Enter a Price:");
+                double price = double.Parse(Console.ReadLine());
+                Pizza updatedPizza = new Pizza(pizzaName, pizzaNumber, ingridients, price);
                 _pizzaMenuAdmin.UpdatePizza(pizzaOldNumber, updatedPizza);
                 Console.WriteLine("The Pizza have been updated");
                 Console.ReadLine();

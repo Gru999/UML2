@@ -5,10 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UML2
-{
-    internal class Pizza
-    {
+namespace UML2 { 
+    internal class Pizza {
         //Instance field
         private int _pizzaNumber;
         private string _pizzaName;
@@ -16,36 +14,31 @@ namespace UML2
         private double _price;
 
         //Property
-        public int PizzaNumber
-        {
+        public int PizzaNumber {
             get { return _pizzaNumber; }
         }
-        public string PizzaName
-        {
+        public string PizzaName {
             get { return _pizzaName; }
         }
-        public string Ingridients
-        {
+        public string Ingridients {
             get { return _ingridients; }
         }
-        public double Price
-        {
+        public double Price {
             get { return _price; }
         }
 
         //Constructor
-        public Pizza(string pizzaName, int pizzaNumber /*string ingridients, double price*/)
-        {
+        public Pizza(string pizzaName, int pizzaNumber, string ingridients, double price) {
             _pizzaName = pizzaName;
             _pizzaNumber = pizzaNumber;
-            //_ingridients = ingridients;
-            //_price = price;
+            _ingridients = ingridients;
+            _price = price;
         }
 
         //methode
-        public override string ToString()
-        {
-            return $"Pizza name: {_pizzaName}\n " +
+        public override string ToString() {
+            return $"\n " +
+                   $"Pizza name: {_pizzaName}\n " +
                    $"----------------------------------\n " +
                    $"Pizza number: {_pizzaNumber} \n " +
                    $"----------------------------------\n " +
